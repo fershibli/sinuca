@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sinuca (2014)</title>
+<style>
+  :root { --felt: #0b6b2e; --wood: #5a3416; --ink: #f4ecd8; }
+  html, body { margin: 0; background: #1b120a; color: var(--ink); font: 15px/1.5 Georgia, serif; }
+  main { max-width: 680px; margin: 0 auto; padding: 24px 16px; }
+  h1 { margin: 0 0 4px; font-size: 28px; letter-spacing: .5px; }
+  p { margin: 4px 0 14px; opacity: .85; }
+  #table { width: 600px; max-width: 100%; height: 330px; border: 14px solid var(--wood); border-radius: 10px; background: var(--felt); box-shadow: 0 10px 30px #0008; overflow: hidden; }
+  #status { font: 13px monospace; opacity: .7; margin-top: 10px; }
+  kbd { background: #2c1d10; border: 1px solid #6b4a2a; border-radius: 4px; padding: 0 5px; font-size: 13px; }
+  a { color: #e9c46a; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Sinuca</h1>
+  <p>Jogo de sinuca em Java/Swing, feito no 3º semestre de Jogos Digitais (2014). Roda aqui pelo <a href="https://cheerpj.com">CheerpJ</a>, uma JVM em WebAssembly.</p>
+  <p>Clique na mesa para dar foco. <kbd>←</kbd> <kbd>→</kbd> <kbd>↑</kbd> <kbd>↓</kbd> miram, <kbd>espaço</kbd> tacada.</p>
+  <div id="table"></div>
+  <div id="status">Carregando a JVM...</div>
+  <p><a href="https://github.com/fershibli/sinuca">Código-fonte</a></p>
+</main>
+<script src="https://cjrtnc.leaningtech.com/3.0/cj3loader.js"></script>
+<script>
+  (async () => {
+    const status = document.getElementById('status');
+    try {
+      await cheerpjInit({ version: 8 });
+      cheerpjCreateDisplay(-1, -1, document.getElementById('table'));
+      status.textContent = 'Rodando.';
+      const base = location.pathname.replace(/[^/]*$/, '');
+      await cheerpjRunJar('/app' + base + 'sinuca.jar');
+    } catch (e) {
+      status.textContent = 'Erro ao iniciar: ' + e;
+    }
+  })();
+</script>
+</body>
+</html>

@@ -6,6 +6,12 @@ A pool (sinuca) game in Java with Swing: ball physics, collisions between balls 
 
 Fernando Luiz Neme Chibli ([@fershibli](https://github.com/fershibli))
 
+## Play in the browser
+
+**[https://fershibli.github.io/sinuca/](https://fershibli.github.io/sinuca/)**
+
+The web version runs the original jar through CheerpJ (a JVM compiled to WebAssembly). It is rebuilt and published by `.github/workflows/pages.yml` on every push to `main`.
+
 ## Releases
 
 Builds are made by GitHub Actions (`.github/workflows/release.yml`) on macOS, Windows and Linux: each platform gets a zipped app image with its own Java runtime, plus a portable `Sinuca.jar` (`java -jar Sinuca.jar`). Push a tag such as `v1.0` (or run the workflow by hand) to publish a release.
